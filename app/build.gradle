@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 
-def keystorePropertiesFile = rootProject.file("keystore.properties")
-def keystoreProperties = new Properties()
-
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+//def keystorePropertiesFile = rootProject.file("keystore.properties")
+//def keystoreProperties = new Properties()
+//
+//keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdkVersion 30
@@ -16,30 +16,47 @@ android {
         versionName "1.35"
         archivesBaseName = "XPrivacyLua-v$versionName-$versionCode"
     }
-    signingConfigs {
-        release {
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-        }
-    }
-
+//    signingConfigs {
+//        release {
+//            storeFile file(keystoreProperties['storeFile'])
+//            storePassword keystoreProperties['storePassword']
+//            keyAlias keystoreProperties['keyAlias']
+//            keyPassword keystoreProperties['keyPassword']
+//        }
+//    }
     buildTypes {
         release {
             shrinkResources true
             minifyEnabled true
-            useProguard = true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+
         }
         debug {
-            shrinkResources false
-            minifyEnabled false
-            useProguard = false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//    packagingOptions {
+//        exclude 'de/robv/android/xposed/**'
+//        exclude 'META-INF/*'
+//    }
+//    buildTypes {
+//        release {
+//            shrinkResources true
+//            minifyEnabled true
+//            useProguard = true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            //signingConfig signingConfigs.release
+//        }
+//        debug {
+//            shrinkResources false
+//            minifyEnabled false
+//            useProguard = false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+//    }
+    buildToolsVersion '30.0.0'
 }
 
 dependencies {
@@ -80,7 +97,9 @@ dependencies {
     // https://github.com/rovo89/XposedBridge/wiki/Using-the-Xposed-Framework-API
     // https://bintray.com/rovo89/de.robv.android.xposed/api
     compileOnly 'de.robv.android.xposed:api:82'
-    compileOnly 'de.robv.android.xposed:api:82:sources'
+    //compileOnly files('../libs/api-82.jar')
+    //compileOnly 'de.robv.android.xposed:api:82:sources'
+    //compileOnly files('../libs/api-82-sources.jar')
 
     // http://www.luaj.org/luaj/3.0/README.html
     // https://mvnrepository.com/artifact/org.luaj/luaj-jse

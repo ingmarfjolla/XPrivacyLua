@@ -36,5 +36,8 @@
 -keep class com.bumptech.glide.GeneratedAppGlideModuleImpl
 -keep enum com.bumptech.glide.** {*; }
 
-#Support library
+##Support library
 -keep class android.support.v7.widget.** { *; }
+#
+#-assumenosideeffects class de.robv.android.xposed.** { *; }
+#-dontwarn de.robv.android.xposed.**

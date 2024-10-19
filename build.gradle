@@ -1,15 +1,18 @@
 buildscript {
     repositories {
+        maven { url 'https://api.xposed.info/' }
+        mavenCentral()
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.android.tools.build:gradle:7.2.2'
     }
 }
 
 allprojects {
     repositories {
+        maven { url 'https://api.xposed.info/' }
         jcenter()
         mavenCentral()
         maven {
